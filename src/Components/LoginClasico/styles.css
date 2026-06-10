@@ -1,0 +1,239 @@
+.login-container {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: inherit;
+}
+
+.login-container input,
+.login-container button {
+    font-family: inherit;
+}
+
+.login-title {
+    margin: 0 0 20px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: left;
+    width: 100%;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-bottom: 18px;
+}
+
+.login-container .form-group>label {
+    margin-bottom: 7px;
+    color: var(--color-primary);
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.cont-inputPass-Y-btnVer {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-radius: 16px;
+    font-size: 16px;
+    background: rgba(140, 29, 64, 0.08);
+    overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cont-inputPass-Y-btnVer:focus-within {
+    box-shadow: 0 0 0 3px rgba(140, 29, 64, 0.16);
+    transform: translateY(-1px);
+}
+
+.input-pass,
+.input-error {
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    color: #111827;
+    font-size: 15px;
+    background: transparent;
+}
+
+.login-container input:focus,
+.login-container input:focus-visible,
+.login-container button:focus,
+.login-container button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.login-container .input-pass,
+.login-container .input-error {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.login-container .input-pass:focus,
+.login-container .input-pass:focus-visible,
+.login-container .input-error:focus,
+.login-container .input-error:focus-visible {
+    border: none !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.login-container input:-webkit-autofill,
+.login-container input:-webkit-autofill:hover,
+.login-container input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #111827;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.icon-email {
+    min-width: 30px;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #111827;
+    font-weight: 900;
+    text-align: center;
+}
+
+.btn-viewPass-login {
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3px;
+    margin-right: 3px;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    font-size: 11px;
+    font-weight: 900;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-viewPass-login:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 0 0 3px rgba(140, 29, 64, 0.18);
+    transform: scale(1.04);
+}
+
+.btn-viewPass-login:active {
+    transform: scale(0.96);
+}
+
+.input-error {
+    color: #991b1b;
+}
+
+.error-message {
+    color: var(--color-primary);
+    font-size: 13px;
+    margin: 7px 0 0;
+}
+
+.error-message--center {
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.login-button {
+    width: 100%;
+    padding: 13px 20px;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    margin: 4px 0 18px;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 12px 22px rgba(140, 29, 64, 0.22);
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.p-login {
+    color: var(--color-muted);
+    font-size: 14px;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+.register-button-login {
+    padding: 0;
+    color: var(--color-primary);
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.register-button-login:hover {
+    color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+/* responsive */
+@media screen and (max-width: 700px) {
+    .login-container {
+        width: 95%;
+        margin-top: 28px;
+        padding: 28px 20px 24px;
+    }
+}

@@ -1,0 +1,41 @@
+.hamburger {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(140, 29, 64, 0.08);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger__line {
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-primary-dark);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.hamburger--open .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger--open .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger--open .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: inline-flex;
+  }
+}

@@ -1,0 +1,9 @@
+.cont-registrarse{
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    background-color: aquamarine;
+}
+

@@ -1,0 +1,82 @@
+.vermuts-page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 34px 0 32px;
+}
+
+.vermuts-hero {
+    min-height: min(650px, calc(100vh - 118px));
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(390px, 1fr);
+    align-items: center;
+    gap: 30px;
+}
+
+.vermuts-hero__copy {
+    text-align: left;
+}
+
+.vermuts-hero__copy span {
+    display: inline-flex;
+    margin-bottom: 18px;
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.vermuts-hero__copy h1 {
+    color: var(--color-ink);
+    font-size: clamp(42px, 6vw, 66px);
+    line-height: 0.94;
+}
+
+.vermuts-hero__copy p {
+    max-width: 600px;
+    margin-top: 18px;
+    color: var(--color-muted);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.vermuts-hero__visual {
+    height: min(620px, calc(100vh - 150px));
+    min-height: 430px;
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 50% 18%, rgba(200, 145, 61, 0.26), transparent 22rem),
+        var(--color-primary);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+.vermuts-hero__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 52%;
+}
+
+@media (max-width: 760px) {
+    .vermuts-page {
+        width: min(100% - 28px, 1180px);
+        padding-top: 34px;
+    }
+
+    .vermuts-hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .vermuts-hero__visual {
+        height: min(420px, 54vh);
+        min-height: 0;
+    }
+
+    .vermuts-hero__copy h1 {
+        font-size: clamp(38px, 12vw, 52px);
+    }
+}
