@@ -1,7 +1,11 @@
 import axios from "axios";
 import { URL } from "../../Urls";
 import {
+    CREATE_PRODUCTO,
+    DELETE_PRODUCTO,
     GET_ALL_USUARIOS,
+    GET_PRODUCTOS,
+    GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
     GET_USER_BY_DNI,
     GET_USER_BY_ID,
@@ -11,6 +15,7 @@ import {
     REGISTRARSE,
     RESET_LOGIN,
     RESET_USER,
+    UPDATE_PRODUCTO,
 } from "./actionType";
 
 const getAuthConfig = () => {
@@ -37,6 +42,13 @@ const getAuthConfig = () => {
         }
     };
 };
+
+const getErrorMessage = (error, fallbackMessage) =>
+    error.response?.data?.message ||
+    error.response?.data?.msg ||
+    error.response?.data?.error ||
+    error.response?.data ||
+    fallbackMessage;
 
 
 // =================================
@@ -204,6 +216,63 @@ export const eliminaUsuario = (id) => {
             return {
                 message: error.response?.data?.message || 'Error al eliminar usuario'
             };
+        }
+    };
+};
+
+// =================================
+// PRODUCTOS
+// =================================
+export const getProductos = () => {
+    return async function (dispatch) {
+        const resp = await axios.get(`${URL}/productos`);
+        const productos = resp.data.productos || [];
+        dispatch({ type: GET_PRODUCTOS, payload: productos });
+        return productos;
+    };
+};
+
+export const getProductosAdmin = () => {
+    return async function (dispatch) {
+        const resp = await axios.get(`${URL}/productos/admin`, getAuthConfig());
+        const productos = resp.data.productos || [];
+        dispatch({ type: GET_PRODUCTOS_ADMIN, payload: productos });
+        return productos;
+    };
+};
+
+export const crearProducto = (producto) => {
+    return async function (dispatch) {
+        try {
+            const resp = await axios.post(`${URL}/productos`, producto, getAuthConfig());
+            dispatch({ type: CREATE_PRODUCTO, payload: resp.data.producto });
+            return resp.data.producto;
+        } catch (error) {
+            throw new Error(getErrorMessage(error, "No se pudo crear el producto"));
+        }
+    };
+};
+
+export const modificarProducto = (slug, producto) => {
+    return async function (dispatch) {
+        try {
+            const resp = await axios.put(`${URL}/productos/${slug}`, producto, getAuthConfig());
+            dispatch({ type: UPDATE_PRODUCTO, payload: resp.data.producto });
+            return resp.data.producto;
+        } catch (error) {
+            throw new Error(getErrorMessage(error, "No se pudo actualizar el producto"));
+        }
+    };
+};
+
+export const eliminarProducto = (slug) => {
+    return async function (dispatch) {
+        try {
+            const resp = await axios.delete(`${URL}/productos/${slug}`, getAuthConfig());
+            dispatch({ type: DELETE_PRODUCTO, payload: slug });
+            return resp.data;
+        } catch (error) {
+            throw new Error(getErrorMessage(error, "No se pudo eliminar el producto"));
         }
     };
 };

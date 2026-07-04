@@ -1,0 +1,144 @@
+.hero {
+  min-height: auto;/* calc(100vh - 140px); */
+  aspect-ratio: 2667 / 1707;
+  margin-top: 0;
+  padding: 0;
+  color: var(--color-surface);
+  /* Overlay para recuperar la version con textos:
+  background:
+    linear-gradient(90deg, rgba(13, 10, 8, 0.84) 0%, rgba(13, 10, 8, 0.58) 42%, rgba(13, 10, 8, 0.16) 100%),
+    url('../../assets/marvento-hero-nautico.jpg') center / cover;
+  */
+  background-color: var(--black);
+  background-image: url('../../assets/marvento-hero-nautico.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  display: block;
+  overflow: hidden;
+}
+
+.hero__picture {
+  display: block;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero__content {
+  width: min(680px, 100%);
+  padding: 0;
+  text-align: left;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 720px;
+  color: var(--color-surface);
+  font-size: clamp(54px, 10vw, 126px);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.82;
+}
+
+.hero p {
+  max-width: 540px;
+  margin-top: 24px;
+  color: rgba(255, 248, 234, 0.84);
+  font-size: 20px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hero__actions a {
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 12px 20px;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.hero__actions a:last-child {
+  color: var(--color-surface);
+  background: rgba(255, 248, 234, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 234, 0.28);
+}
+
+.hero__tag {
+  position: absolute;
+  right: max(28px, calc((100vw - 1180px) / 2));
+  bottom: 54px;
+  border-radius: 999px;
+  padding: 16px 22px;
+  color: var(--color-surface);
+  background: rgba(15, 17, 18, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 234, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.hero__tag strong,
+.hero__tag span {
+  display: block;
+}
+
+.hero__tag strong {
+  font-family: var(--font-base);
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hero__tag span {
+  color: rgba(255, 248, 234, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    aspect-ratio: auto;
+    background-image: none;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero__content {
+    padding: 0;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .hero__tag {
+    position: static;
+    margin-top: 34px;
+    width: fit-content;
+  }
+}

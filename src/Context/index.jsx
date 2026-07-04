@@ -21,9 +21,19 @@ const AppProvider = ({ children }) => {
     };
 
     const addToCart = (product) => {
+        const stockDisponible = Number(product.stock ?? 0);
+
+        if (stockDisponible <= 0) {
+            return;
+        }
+
         const existe = cartItems.find((item) => item.id === product.id);
 
         if (existe) {
+            if (existe.cantidad >= stockDisponible) {
+                return;
+            }
+
             guardarCarrito(
                 cartItems.map((item) =>
                     item.id === product.id
@@ -34,19 +44,26 @@ const AppProvider = ({ children }) => {
             return;
         }
 
-        guardarCarrito([...cartItems, { ...product, cantidad: 1 }]);
+        guardarCarrito([...cartItems, { ...product, stock: stockDisponible, cantidad: 1 }]);
     };
 
     const updateCartItemQuantity = (id, cantidad) => {
         const cantidadFinal = Number(cantidad);
+        const itemActual = cartItems.find((item) => item.id === id);
+        const stockDisponible = Number(itemActual?.stock ?? 0);
 
         if (!Number.isFinite(cantidadFinal) || cantidadFinal < 1) {
             return;
         }
 
+        if (stockDisponible <= 0) {
+            removeFromCart(id);
+            return;
+        }
+
         guardarCarrito(
             cartItems.map((item) =>
-                item.id === id ? { ...item, cantidad: cantidadFinal } : item
+                item.id === id ? { ...item, stock: stockDisponible, cantidad: Math.min(cantidadFinal, stockDisponible) } : item
             )
         );
     };
@@ -68,6 +85,7 @@ const AppProvider = ({ children }) => {
     };
     const logout = () => {
         localStorage.removeItem('userData');
+        localStorage.removeItem('dataUser');
         setUserLog(null);
         setNombreUser('');
         setIsAuthenticated(false);

@@ -1,0 +1,374 @@
+.sales-points-page {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    padding: 74px max(24px, calc((100vw - 1180px) / 2)) 76px;
+    color: var(--secondary);
+    background: var(--primary);
+    overflow: hidden;
+}
+
+.sales-points-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: url('../../assets/marvento-rojo-producto.jpg') right 3vw top 54px / min(920px, 78vw) auto no-repeat;
+    filter: blur(3px);
+    opacity: 0.82;
+    transform: none;
+}
+
+.sales-points-page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(90deg, rgba(0, 42, 58, 0.82) 0%, rgba(0, 42, 58, 0.42) 42%, rgba(0, 42, 58, 0.08) 100%),
+        rgba(0, 42, 58, 0.08);
+}
+
+.sales-points__intro {
+    width: min(760px, 100%);
+    margin-bottom: 48px;
+}
+
+.sales-points__intro span {
+    display: inline-flex;
+    margin-bottom: 18px;
+    color: var(--bianco);
+    font-family: var(--font-base);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.sales-points__intro h1 {
+    color: var(--secondary);
+    font-family: var(--font-brand);
+    font-size: clamp(44px, 7vw, 86px);
+    font-weight: 700;
+    line-height: 0.9;
+}
+
+.sales-points__intro p {
+    max-width: 640px;
+    margin-top: 22px;
+    color: rgba(239, 219, 178, 0.82);
+    font-family: var(--font-base);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.18;
+}
+
+.sales-points__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    gap: 28px;
+    align-items: start;
+}
+
+.sales-points__mobile-search {
+    display: none;
+}
+
+.sales-map {
+    position: sticky;
+    top: 96px;
+    height: 640px;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    background: #f1ddba;
+    color: var(--primary);
+    overflow: hidden;
+}
+
+.sales-map__canvas {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--secondary);
+}
+
+.sales-map__canvas iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: saturate(0.72) contrast(0.98) sepia(0.12);
+}
+
+.sales-map__detail {
+    min-height: 126px;
+    padding: 24px 28px;
+    background: var(--secondary);
+    border-top: 1px solid rgba(0, 42, 58, 0.28);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 24px;
+    align-items: center;
+}
+
+.sales-map__detail span {
+    grid-column: 1 / -1;
+    color: var(--rosso);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.sales-map__detail strong {
+    font-family: var(--font-brand);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.sales-map__detail p {
+    color: rgba(0, 42, 58, 0.72);
+    font-size: 16px;
+}
+
+.sales-map__detail a {
+    grid-row: 2 / 4;
+    grid-column: 2;
+    padding: 12px 16px;
+    color: var(--secondary);
+    background: var(--primary);
+    font-size: 12px;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sales-points__list {
+    display: grid;
+    gap: 12px;
+    max-height: 640px;
+    overflow-y: auto;
+    padding-right: 8px;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--secondary) rgba(239, 219, 178, 0.18);
+    scrollbar-width: thin;
+}
+
+.sales-points__list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sales-points__list::-webkit-scrollbar-track {
+    background: rgba(239, 219, 178, 0.18);
+}
+
+.sales-points__list::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+}
+
+.sales-point {
+    border: 1px solid rgba(239, 219, 178, 0.32);
+    color: var(--secondary);
+    background: transparent;
+    display: grid;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.sales-point__select {
+    width: 100%;
+    border: 0;
+    padding: 22px;
+    color: inherit;
+    background: transparent;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sales-point span {
+    grid-row: 1 / 4;
+    color: var(--bianco);
+    font-family: var(--font-brand);
+    font-size: 24px;
+    line-height: 1;
+}
+
+.sales-point strong {
+    font-family: var(--font-brand);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.sales-point small,
+.sales-point em {
+    color: rgba(239, 219, 178, 0.74);
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.3;
+}
+
+.sales-point:hover,
+.sales-point--active {
+    border-color: var(--secondary);
+    color: var(--primary);
+    background: var(--secondary);
+}
+
+.sales-point:hover span,
+.sales-point--active span {
+    color: var(--rosso);
+}
+
+.sales-point:hover small,
+.sales-point:hover em,
+.sales-point--active small,
+.sales-point--active em {
+    color: rgba(0, 42, 58, 0.72);
+}
+
+.sales-point__maps {
+    display: none;
+}
+
+.sales-points__empty {
+    border: 1px solid rgba(239, 219, 178, 0.32);
+    padding: 22px;
+    color: rgba(239, 219, 178, 0.78);
+    font-size: 16px;
+    line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+    .sales-points-page {
+        position: relative;
+        isolation: isolate;
+        min-height: 100vh;
+        padding: 74px max(24px, calc((100vw - 1180px) / 2)) 76px;
+        color: var(--secondary);
+        background: var(--primary);
+        overflow: hidden;
+    }
+
+    .sales-points-page::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: url('../../assets/marvento-rojo-producto.jpg') right 3vw top 54px / min(920px, 78vw) auto no-repeat;
+        filter: blur(3px);
+        opacity: 0.82;
+        transform: none;
+    }
+
+    .sales-points-page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(90deg, rgba(0, 42, 58, 0.82) 0%, rgba(0, 42, 58, 0.42) 42%, rgba(0, 42, 58, 0.08) 100%),
+        rgba(0, 42, 58, 0.08);
+}
+
+    .sales-points__intro p {
+        font-size: 18px;
+    }
+
+    .sales-points__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sales-points__mobile-search {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .sales-points__mobile-search label {
+        color: var(--secondary);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .sales-points__mobile-search input {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid rgba(239, 219, 178, 0.44);
+        border-radius: 0;
+        padding: 0 14px;
+        color: var(--secondary);
+        background: rgba(0, 42, 58, 0.58);
+        font-family: var(--font-base);
+        font-size: 16px;
+        outline: none;
+    }
+
+    .sales-points__mobile-search input::placeholder {
+        color: rgba(239, 219, 178, 0.56);
+    }
+
+    .sales-points__mobile-search input:focus {
+        border-color: var(--secondary);
+    }
+
+    .sales-points__mobile-search p {
+        color: rgba(239, 219, 178, 0.76);
+        font-size: 14px;
+        line-height: 1.25;
+    }
+
+    .sales-map {
+        display: none;
+    }
+
+    .sales-points__list {
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .sales-point {
+        background: rgba(0, 42, 58, 0.34);
+    }
+
+    .sales-point__select {
+        padding: 18px;
+    }
+
+    .sales-point__maps {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin: 0 18px 18px 58px;
+        padding: 0 14px;
+        color: var(--primary);
+        background: var(--secondary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .sales-point:hover .sales-point__maps,
+    .sales-point--active .sales-point__maps {
+        color: var(--secondary);
+        background: var(--primary);
+    }
+}
+
+

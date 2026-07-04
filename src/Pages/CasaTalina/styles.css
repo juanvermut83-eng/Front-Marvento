@@ -1,0 +1,77 @@
+.casa-talina-page {
+    background: var(--primary);
+}
+
+.casa-talina-page__text {
+    min-height: 430px;
+    padding: clamp(58px, 8vw, 94px) max(28px, calc((100vw - 1180px) / 2));
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+}
+
+.casa-talina-page__content {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.casa-talina-page h1 {
+    margin: 0 0 28px;
+    color: var(--secondary);
+    font-family: var(--font-base);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.casa-talina-page p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.casa-talina-page p + p {
+    margin-top: 28px;
+}
+
+.casa-talina-page strong {
+    font-weight: 600;
+}
+
+.casa-talina-page__image {
+    background: var(--primary);
+    overflow: hidden;
+}
+
+.casa-talina-page__image picture {
+    width: 100%;
+    display: block;
+}
+
+.casa-talina-page__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 760px) {
+    .casa-talina-page__text {
+        min-height: 360px;
+    }
+
+    .casa-talina-page__text {
+        padding: 48px 24px;
+    }
+
+    .casa-talina-page__content {
+        margin: 0;
+    }
+
+    .casa-talina-page p {
+        font-size: 18px;
+        line-height: 1.18;
+    }
+}

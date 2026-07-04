@@ -1,0 +1,228 @@
+.admin-consultas {
+  min-height: 100vh;
+  padding: 54px max(20px, calc((100vw - 1180px) / 2)) 70px;
+  background:
+    linear-gradient(180deg, rgba(0, 42, 58, 0.98) 0%, rgba(0, 42, 58, 0.94) 100%),
+    var(--primary);
+  color: var(--secondary);
+}
+
+.admin-consultas__header {
+  margin-bottom: 34px;
+}
+
+.admin-consultas__header span {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: var(--rosso);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-consultas__header h1 {
+  color: var(--secondary);
+  font-family: var(--font-brand);
+  font-size: clamp(42px, 7vw, 76px);
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.admin-consultas__header p {
+  max-width: 620px;
+  margin-top: 18px;
+  color: rgba(239, 219, 178, 0.74);
+  font-size: 18px;
+}
+
+.admin-consultas__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.admin-consultas__metrics article {
+  border: 1px solid rgba(239, 219, 178, 0.24);
+  padding: 20px;
+  background: rgba(239, 219, 178, 0.08);
+}
+
+.admin-consultas__metrics span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(239, 219, 178, 0.64);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.admin-consultas__metrics strong {
+  font-family: var(--font-brand);
+  font-size: 36px;
+  line-height: 1;
+}
+
+.admin-consultas__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.admin-consultas__filter {
+  border: 1px solid rgba(239, 219, 178, 0.3);
+  padding: 10px 14px;
+  color: var(--secondary);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.admin-consultas__filter--active,
+.admin-consultas__filter:hover {
+  color: var(--primary);
+  background: var(--secondary);
+}
+
+.admin-consultas__panel {
+  border: 1px solid rgba(239, 219, 178, 0.28);
+  background: rgba(239, 219, 178, 0.08);
+}
+
+.admin-consultas__items {
+  display: grid;
+}
+
+.admin-consulta {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  border-bottom: 1px solid rgba(239, 219, 178, 0.18);
+  color: var(--primary);
+  background: var(--secondary);
+}
+
+.admin-consulta:last-child {
+  border-bottom: 0;
+}
+
+.admin-consulta__top,
+.admin-consulta__contact,
+.admin-consulta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-consulta__top {
+  justify-content: space-between;
+}
+
+.admin-consulta__status {
+  padding: 7px 10px;
+  color: var(--secondary);
+  background: var(--primary);
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.admin-consulta__status--nueva {
+  background: var(--rosso);
+}
+
+.admin-consulta__status--respondida {
+  background: #2f6d4f;
+}
+
+.admin-consulta__status--archivada {
+  background: rgba(0, 42, 58, 0.48);
+}
+
+.admin-consulta__top time {
+  color: rgba(0, 42, 58, 0.58);
+  font-size: 13px;
+}
+
+.admin-consulta__body {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.admin-consulta__body strong,
+.admin-consulta__body span {
+  display: block;
+}
+
+.admin-consulta__body strong {
+  font-family: var(--font-brand);
+  font-size: 24px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.admin-consulta__body span {
+  margin-top: 8px;
+  color: var(--rosso);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.admin-consulta__body p {
+  color: rgba(0, 42, 58, 0.8);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.admin-consulta__contact a {
+  color: var(--primary);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.admin-consulta__contact a:hover {
+  color: var(--rosso);
+}
+
+.admin-consulta__actions button {
+  border: 1px solid rgba(0, 42, 58, 0.24);
+  padding: 9px 12px;
+  color: var(--primary);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.admin-consulta__actions button:hover:not(:disabled) {
+  color: var(--secondary);
+  background: var(--primary);
+}
+
+.admin-consulta__actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.admin-consultas__empty,
+.admin-consultas__error {
+  padding: 30px;
+  color: rgba(239, 219, 178, 0.74);
+}
+
+.admin-consultas__error {
+  color: var(--rosso);
+}
+
+@media (max-width: 760px) {
+  .admin-consultas {
+    padding: 42px 16px 54px;
+  }
+
+  .admin-consultas__metrics,
+  .admin-consulta__body {
+    grid-template-columns: 1fr;
+  }
+}

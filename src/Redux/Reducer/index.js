@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
 import { 
+    CREATE_PRODUCTO,
+    DELETE_PRODUCTO,
     GET_ALL_USUARIOS,
+    GET_PRODUCTOS,
+    GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
     GET_USER_BY_DNI,
     GET_USER_BY_ID,
@@ -10,6 +14,7 @@ import {
     REGISTRARSE,
     RESET_LOGIN,
     RESET_USER,
+    UPDATE_PRODUCTO,
 } from '../Actions/actionType'
 const initialState = {
     loading: false,
@@ -20,6 +25,8 @@ const initialState = {
     usuarioById: null,
     usuarioByDni: null,
     usuarioModificado: null,
+    productos: [],
+    productosAdmin: [],
 }
 
 export const SET_LOADING = 'SET_LOADING'
@@ -104,6 +111,37 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 usuarioModificado: action.payload,
+            }
+        case GET_PRODUCTOS:
+            return {
+                ...state,
+                productos: action.payload,
+            }
+        case GET_PRODUCTOS_ADMIN:
+            return {
+                ...state,
+                productosAdmin: action.payload,
+            }
+        case CREATE_PRODUCTO:
+            return {
+                ...state,
+                productosAdmin: [...state.productosAdmin, action.payload].filter(Boolean),
+            }
+        case UPDATE_PRODUCTO:
+            return {
+                ...state,
+                productos: state.productos.map((producto) =>
+                    producto.id === action.payload?.id ? action.payload : producto
+                ),
+                productosAdmin: state.productosAdmin.map((producto) =>
+                    producto.id === action.payload?.id ? action.payload : producto
+                ),
+            }
+        case DELETE_PRODUCTO:
+            return {
+                ...state,
+                productos: state.productos.filter((producto) => producto.id !== action.payload),
+                productosAdmin: state.productosAdmin.filter((producto) => producto.id !== action.payload),
             }
         case LOADING:
             return {

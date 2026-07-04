@@ -9,3 +9,10 @@ export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
 export const RESET_USER = "RESET_USER";
 export const MODIFICA_USUARIO = "MODIFICA_USUARIO";
 export const LOADING = "LOADING";
+
+//productos
+export const GET_PRODUCTOS = "GET_PRODUCTOS";
+export const GET_PRODUCTOS_ADMIN = "GET_PRODUCTOS_ADMIN";
+export const CREATE_PRODUCTO = "CREATE_PRODUCTO";
+export const UPDATE_PRODUCTO = "UPDATE_PRODUCTO";
+export const DELETE_PRODUCTO = "DELETE_PRODUCTO";

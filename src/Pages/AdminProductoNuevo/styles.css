@@ -1,6 +1,11 @@
 .admin-product-page {
   width: min(960px, calc(100% - 32px));
+  min-height: 100%;
   margin: 54px auto 90px;
+  color: var(--secondary);
+  background: var(--primary);
+  box-shadow: 0 0 0 100vmax var(--primary);
+  clip-path: inset(0 -100vmax);
 }
 
 .admin-product-page__header {
@@ -17,14 +22,14 @@
 
 .admin-product-page__header h1 {
   margin: 8px 0;
-  color: var(--color-primary);
+  color: var(--secondary);
   font-family: var(--font-display);
   font-size: clamp(34px, 6vw, 62px);
   line-height: 0.96;
 }
 
 .admin-product-page__header p {
-  color: var(--color-muted);
+  color: rgba(239, 219, 178, 0.74);
   line-height: 1.6;
 }
 

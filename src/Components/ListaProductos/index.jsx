@@ -1,46 +1,65 @@
-import { useContext, useState } from 'react'
-import productImage from '../../assets/vermuts-productos-marvento.png'
+import { useContext, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import CardProducto from '../CardProducto'
+import biancoImage from '../../assets/Botella-Bianco.jpg'
+import cajaX6Image from '../../assets/cajax6.png'
+import rojoImage from '../../assets/Botella-Rosso.jpg'
 import { AppContext } from '../../Context/AppContext'
+import { formatProductPrice } from '../../Helpers/productos'
+import { getProductos } from '../../Redux/Actions'
 import './styles.css'
-
-const productos = [
-  {
-    id: 'rojo',
-    nombre: 'Marvento Rojo',
-    tipo: 'Vermut rosso',
-    descripcion:
-      'Intenso, especiado y botanico. Pensado para servir con hielo, piel de naranja y soda.',
-    notas: ['Ajenjo', 'Cascara citrica', 'Hierbas tostadas'],
-    precio: '$ 12.500',
-    precioUnitario: 12500,
-    color: 'red',
-  },
-  {
-    id: 'bianco',
-    nombre: 'Marvento Bianco',
-    tipo: 'Vermut blanco seco',
-    descripcion:
-      'Fresco, herbal y elegante. Ideal para aperitivos largos, tonica y rodaja de limon.',
-    notas: ['Flores blancas', 'Citrus', 'Salvia'],
-    precio: '$ 12.500',
-    precioUnitario: 12500,
-    color: 'white',
-  },
-]
 
 const ListaProductos = () => {
   const { addToCart } = useContext(AppContext)
+  const dispatch = useDispatch()
+  const productos = useSelector((state) => state.app.productos)
   const [addedProductId, setAddedProductId] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  const isCajaX6 = (producto) => {
+    const text = `${producto?.nombre || ''} ${producto?.tipo || ''} ${producto?.descripcion || ''}`.toLowerCase()
+
+    return text.includes('caja') || text.includes('x6') || text.includes('x 6') || text.includes('pack')
+  }
+
+  const getProductImage = (producto) => {
+    if (isCajaX6(producto)) {
+      return cajaX6Image
+    }
+
+    return producto.color === 'white' ? biancoImage : rojoImage
+  }
+
+  useEffect(() => {
+    const loadProductos = async () => {
+      try {
+        setError('')
+        await dispatch(getProductos())
+      } catch (requestError) {
+        setError(requestError.message || 'No se pudieron cargar los productos')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadProductos()
+  }, [])
 
   const handleAddToCart = (producto) => {
+    if (producto.stock <= 0) {
+      return
+    }
+
     addToCart({
       id: producto.id,
       nombre: producto.nombre,
       tipo: producto.tipo,
-      precio: producto.precio,
+      precio: formatProductPrice(producto.precioUnitario),
       precioUnitario: producto.precioUnitario,
       color: producto.color,
-      image: productImage,
+      stock: producto.stock,
+      image: getProductImage(producto),
     })
     setAddedProductId(producto.id)
     window.setTimeout(() => setAddedProductId(''), 1200)
@@ -48,35 +67,17 @@ const ListaProductos = () => {
 
   return (
     <section className="product-list">
+      {isLoading && <div className="product-list__state">Cargando productos...</div>}
+      {error && <div className="product-list__state product-list__state--error">{error}</div>}
       <div className="product-list__items">
         {productos.map((producto) => (
-          <article className={`product-card product-card--${producto.color}`} key={producto.id}>
-            <div className="product-card__content">
-              <div className="product-card__number">{producto.id === 'rojo' ? '01' : '02'}</div>
-              <div>
-                <span className="product-card__type">{producto.tipo}</span>
-                <h2>{producto.nombre}</h2>
-                <p>{producto.descripcion}</p>
-              </div>
-
-              <ul className="product-card__notes">
-                {producto.notas.map((nota) => (
-                  <li key={nota}>{nota}</li>
-                ))}
-              </ul>
-
-              <div className="product-card__footer">
-                <strong>{producto.precio}</strong>
-                <button type="button" onClick={() => handleAddToCart(producto)}>
-                  {addedProductId === producto.id ? 'Agregado' : 'Agregar'}
-                </button>
-              </div>
-            </div>
-
-            <div className="product-card__visual" aria-hidden="true">
-              <img src={productImage} alt="" />
-            </div>
-          </article>
+          <CardProducto
+            key={producto.id}
+            producto={producto}
+            image={getProductImage(producto)}
+            onAdd={handleAddToCart}
+            isAdded={addedProductId === producto.id}
+          />
         ))}
       </div>
     </section>

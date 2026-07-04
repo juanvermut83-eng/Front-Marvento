@@ -6,19 +6,17 @@ import './styles.css'
 const Login = () => {
   return (
     <section className="login-page">
-      <div className="login-page__intro">
-        <span>Acceso privado</span>
-        <h1>Ingreso administrativo</h1>
+      {/* <div className="login-page__intro">
+        <span>Accede a nuestro ecommerce</span>
         <p>
-          Este acceso queda pensado para administrar productos, pedidos y contenidos del ecommerce.
-          El cliente puede comprar y autenticarse mas adelante durante el checkout.
+          Inicia sesion para continuar tu compra, consultar tus datos y acceder a una experiencia de compra mas agil.
         </p>
-      </div>
+      </div> */}
 
       <div className="login-card">
         <div className="login-card__header">
           <h2>Iniciar sesion</h2>
-          <p>Entrar con email o continuar con Google.</p>
+          <p>Usa tu email o continua con Google.</p>
         </div>
 
         <LoginClasico />
@@ -31,7 +29,6 @@ const Login = () => {
 
         <div className="login-card__links">
           <Link to="/registrarse">Registrarse</Link>
-          <Link to="/login#google">Entrar con Google</Link>
         </div>
       </div>
     </section>

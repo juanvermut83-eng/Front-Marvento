@@ -20,12 +20,11 @@
 }
 
 .login-title {
-    margin: 0 0 20px;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--color-primary);
-    text-align: left;
-    width: 100%;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
 }
 
 .login-form {
@@ -47,7 +46,7 @@
 
 .login-container .form-group>label {
     margin-bottom: 7px;
-    color: var(--color-primary);
+    color: rgba(239, 219, 178, 0.82);
     text-align: left;
     font-size: 15px;
     font-weight: 400;
@@ -60,9 +59,9 @@
     justify-content: center;
     align-items: center;
     border: 0;
-    border-radius: 16px;
+    border-radius: 0;
     font-size: 16px;
-    background: rgba(140, 29, 64, 0.08);
+    background: rgba(239, 219, 178, 0.94);
     overflow: hidden;
     transition:
         border-color 0.2s ease,
@@ -71,7 +70,7 @@
 }
 
 .cont-inputPass-Y-btnVer:focus-within {
-    box-shadow: 0 0 0 3px rgba(140, 29, 64, 0.16);
+    box-shadow: 0 0 0 2px rgba(239, 219, 178, 0.38);
     transform: translateY(-1px);
 }
 
@@ -115,15 +114,19 @@
 .login-container input:-webkit-autofill:hover,
 .login-container input:-webkit-autofill:focus {
     -webkit-text-fill-color: #111827;
-    box-shadow: 0 0 0 1000px #ffffff inset !important;
-    transition: background-color 9999s ease-in-out 0s;
+    box-shadow: 0 0 0 1000px rgba(239, 219, 178, 0.94) inset !important;
 }
 
 .icon-email {
-    min-width: 30px;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 3px;
     margin-right: 3px;
-    color: #111827;
+    color: var(--secondary);
+    background: var(--primary);
     font-weight: 900;
     text-align: center;
 }
@@ -136,23 +139,34 @@
     align-items: center;
     margin-left: 3px;
     margin-right: 3px;
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+    background-color: var(--primary);
+    color: var(--secondary);
     font-size: 11px;
     font-weight: 900;
     border: none;
-    border-radius: 8px;
+    border-radius: 0;
     outline: none;
     cursor: pointer;
+    padding: 0;
     transition:
         background-color 0.2s ease,
         box-shadow 0.2s ease,
         transform 0.2s ease;
 }
 
+.btn-viewPass-login svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.9;
+}
+
 .btn-viewPass-login:hover {
     background-color: var(--color-primary-dark);
-    box-shadow: 0 0 0 3px rgba(140, 29, 64, 0.18);
+    box-shadow: 0 0 0 2px rgba(239, 219, 178, 0.26);
     transform: scale(1.04);
 }
 
@@ -165,7 +179,7 @@
 }
 
 .error-message {
-    color: var(--color-primary);
+    color: var(--secondary);
     font-size: 13px;
     margin: 7px 0 0;
 }
@@ -179,10 +193,10 @@
 .login-button {
     width: 100%;
     padding: 13px 20px;
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+    background-color: var(--secondary);
+    color: var(--primary);
     border: none;
-    border-radius: 10px;
+    border-radius: 0;
     font-size: 16px;
     font-weight: 800;
     cursor: pointer;
@@ -194,8 +208,8 @@
 }
 
 .login-button:hover {
-    background-color: var(--color-primary-dark);
-    box-shadow: 0 12px 22px rgba(140, 29, 64, 0.22);
+    background-color: #f7e8c6;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.24);
     transform: translateY(-1px);
 }
 
@@ -205,7 +219,7 @@
 }
 
 .p-login {
-    color: var(--color-muted);
+    color: rgba(239, 219, 178, 0.7);
     font-size: 14px;
     margin: 0 0 10px;
     text-align: center;
@@ -213,7 +227,7 @@
 
 .register-button-login {
     padding: 0;
-    color: var(--color-primary);
+    color: var(--secondary);
     font-size: 15px;
     background: transparent;
     border: none;
@@ -225,15 +239,77 @@
 }
 
 .register-button-login:hover {
-    color: var(--color-primary-dark);
+    color: #ffffff;
     transform: translateY(-1px);
 }
 
 /* responsive */
+/* MOBILE LOGIN */
 @media screen and (max-width: 700px) {
     .login-container {
-        width: 95%;
-        margin-top: 28px;
-        padding: 28px 20px 24px;
+        width: 97%;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .login-container .form-group>label {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .cont-inputPass-Y-btnVer {
+        min-height: 40px;
+    }
+
+    .input-pass,
+    .input-error {
+        height: 40px;
+        font-size: 16px;
+        /* evita zoom en iPhone */
+        padding: 0 12px;
+    }
+
+    .icon-email,
+    .btn-viewPass-login {
+        width: 42px;
+        height: 34px;
+        flex-shrink: 0;
+    }
+
+    .btn-viewPass-login svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .login-button {
+        width: 100%;
+        min-height: 46px;
+        padding: 12px 16px;
+        font-size: 15px;
+        margin: 4px 0 16px;
+    }
+
+    .p-login {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .register-button-login {
+        font-size: 14px;
+    }
+
+    .error-message {
+        font-size: 12px;
+        line-height: 1.3;
     }
 }

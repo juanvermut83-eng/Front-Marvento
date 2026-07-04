@@ -1,0 +1,127 @@
+.card-producto {
+  width: min(100%, 486px);
+  border: 1px solid rgba(3, 43, 63, 0.18);
+  background: var(--white);
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-producto__top {
+  height: 54px;
+  background-image: url('../../assets/barra_lenguaje2.png');
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  display: flex;
+  align-items: stretch;
+}
+
+.card-producto__top span {
+  min-width: 172px;
+  margin-left: 64px;
+  padding: 0 28px;
+  color: var(--secondary);
+  background: var(--rosso);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-brand);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.card-producto--bianco .card-producto__top span {
+  background: var(--bianco);
+}
+
+.card-producto__image {
+  height: clamp(440px, 52vw, 650px);
+  padding: 44px 42px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+}
+
+.card-producto__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.card-producto--box .card-producto__image {
+  padding: 34px 26px 28px;
+}
+
+.card-producto--box .card-producto__image img {
+  width: 108%;
+  max-width: none;
+}
+
+.card-producto__info {
+  min-height: 116px;
+  padding: 24px 32px;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.card-producto__info h2,
+.card-producto__info p {
+  margin: 0;
+  color: var(--primary);
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+
+.card-producto__info button {
+  min-height: 42px;
+  border: 0;
+  padding: 0 18px;
+  color: var(--secondary);
+  background: var(--primary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.card-producto__info button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 560px) {
+  .card-producto__top span {
+    min-width: 150px;
+    margin-left: 48px;
+    font-size: 26px;
+  }
+
+  .card-producto__image {
+    height: 430px;
+    padding: 34px 28px 28px;
+  }
+
+  .card-producto--box .card-producto__image {
+    height: 360px;
+    padding: 26px 18px 22px;
+  }
+
+  .card-producto__info {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 22px 30px;
+  }
+}
+

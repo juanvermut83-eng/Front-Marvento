@@ -1,0 +1,350 @@
+.admin-points {
+  width: min(1120px, calc(100% - 32px));
+  min-height: 100%;
+  margin: 54px auto 90px;
+  color: var(--secondary);
+  background: var(--primary);
+  box-shadow: 0 0 0 100vmax var(--primary);
+  clip-path: inset(0 -100vmax);
+}
+
+.admin-points__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.admin-points__header span,
+.admin-points__metrics span {
+  color: var(--color-gold);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-points__header h1 {
+  margin: 8px 0;
+  color: var(--secondary);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 62px);
+  line-height: 0.96;
+}
+
+.admin-points__header p {
+  max-width: 620px;
+  color: rgba(239, 219, 178, 0.74);
+  line-height: 1.6;
+}
+
+.admin-points__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.admin-points__header-actions button,
+.admin-points__header-actions a,
+.admin-points__form-actions button,
+.admin-points__actions button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.admin-points__header-actions button,
+.admin-points__form-actions button:last-child,
+.admin-points__actions button:first-child {
+  color: var(--primary);
+  background: var(--secondary);
+}
+
+.admin-points__header-actions a,
+.admin-points__form-actions button:first-child,
+.admin-points__actions button:last-child {
+  color: var(--secondary);
+  background: rgba(239, 219, 178, 0.14);
+}
+
+.admin-points__form-actions button:last-child,
+.admin-points__actions button:first-child {
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+
+.admin-points__form-actions button:first-child,
+.admin-points__actions button:last-child {
+  color: var(--color-primary-dark);
+  background: rgba(140, 29, 64, 0.08);
+}
+
+.admin-points__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.admin-points__metrics article,
+.admin-points__panel,
+.admin-points__form,
+.admin-points__confirm-panel {
+  border: 1px solid rgba(140, 29, 64, 0.12);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.admin-points__metrics article {
+  padding: 12px 14px;
+}
+
+.admin-points__metrics strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.admin-points__message {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  width: min(360px, calc(100% - 36px));
+  border: 1px solid rgba(3, 43, 63, 0.16);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--primary);
+  background: var(--secondary);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+
+.admin-points__message--error {
+  color: #8f1f1f;
+  background: #fff7f7;
+}
+
+.admin-points__confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 75;
+  padding: 20px;
+  background: rgba(0, 42, 58, 0.42);
+  display: grid;
+  place-items: center;
+}
+
+.admin-points__confirm-panel {
+  width: min(420px, 100%);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-points__confirm strong,
+.admin-points__confirm span {
+  display: block;
+  color: var(--color-primary-dark);
+}
+
+.admin-points__confirm span {
+  margin-top: 4px;
+  color: var(--color-muted);
+}
+
+.admin-points__confirm-actions,
+.admin-points__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-points__confirm-actions button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+.admin-points__confirm-actions button:first-child {
+  color: var(--color-primary-dark);
+  background: rgba(3, 43, 63, 0.08);
+}
+
+.admin-points__confirm-actions button:last-child {
+  color: var(--color-surface);
+  background: #8f1f1f;
+}
+
+.admin-points__empty {
+  padding: 22px;
+  color: var(--color-muted);
+}
+
+.admin-points__form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 20px;
+}
+
+.admin-points__form-title,
+.admin-points__form-actions {
+  grid-column: 1 / -1;
+}
+
+.admin-points__form-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-points__form-title h2 {
+  color: var(--color-primary-dark);
+  font-size: 28px;
+}
+
+.admin-points__form-title button {
+  border: 0;
+  border-radius: 999px;
+  color: var(--color-primary-dark);
+  background: rgba(140, 29, 64, 0.08);
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+.admin-points__form label {
+  display: grid;
+  gap: 8px;
+  color: var(--color-primary-dark);
+}
+
+.admin-points__form input,
+.admin-points__form select {
+  width: 100%;
+  border: 1px solid rgba(140, 29, 64, 0.2);
+  border-radius: 8px;
+  color: var(--color-text);
+  background: rgba(255, 250, 241, 0.68);
+  padding: 12px 13px;
+}
+
+.admin-points__checkbox {
+  align-content: end;
+  grid-template-columns: auto 1fr;
+}
+
+.admin-points__checkbox input {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-points__form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.admin-points__panel {
+  overflow: hidden;
+}
+
+.admin-points__table-wrap {
+  overflow-x: auto;
+}
+
+.admin-points__table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.admin-points__table th,
+.admin-points__table td {
+  border-bottom: 1px solid rgba(140, 29, 64, 0.1);
+  padding: 16px;
+  text-align: left;
+}
+
+.admin-points__table th {
+  color: var(--color-primary-dark);
+  background: rgba(140, 29, 64, 0.06);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-points__table td {
+  color: var(--color-muted);
+  vertical-align: middle;
+}
+
+.admin-points__table td strong,
+.admin-points__table td span {
+  display: block;
+}
+
+.admin-points__table td strong {
+  color: var(--color-ink);
+}
+
+.admin-points__status {
+  border: 0;
+  border-radius: 999px;
+  color: var(--color-primary-dark);
+  background: rgba(200, 145, 61, 0.2);
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.admin-points__status--off {
+  color: var(--color-muted);
+  background: rgba(117, 104, 94, 0.14);
+}
+
+@media (max-width: 820px) {
+  .admin-points {
+    margin-top: 36px;
+  }
+
+  .admin-points__header,
+  .admin-points__form-title {
+    flex-direction: column;
+  }
+
+  .admin-points__header-actions,
+  .admin-points__form-title button {
+    width: 100%;
+  }
+
+  .admin-points__header-actions button,
+  .admin-points__header-actions a,
+  .admin-points__form-title button {
+    text-align: center;
+  }
+
+  .admin-points__metrics,
+  .admin-points__form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-points__form-actions,
+  .admin-points__confirm-actions {
+    flex-direction: column;
+  }
+
+  .admin-points__confirm-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
