@@ -66,15 +66,63 @@
 .sales-points__layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
-    gap: 28px;
+    gap: 18px 28px;
     align-items: start;
 }
 
-.sales-points__mobile-search {
-    display: none;
+.sales-points__search {
+    grid-column: 2;
+    display: grid;
+    gap: 10px;
+}
+
+.sales-points__search label {
+    color: var(--secondary);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.sales-points__search input {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid rgba(239, 219, 178, 0.44);
+    border-radius: 0;
+    padding: 0 14px;
+    color: var(--secondary);
+    background: rgba(0, 42, 58, 0.58);
+    font-family: var(--font-base);
+    font-size: 16px;
+    outline: none;
+}
+
+.sales-points__search input::placeholder {
+    color: rgba(239, 219, 178, 0.56);
+}
+
+.sales-points__search input:focus {
+    border-color: var(--secondary);
+}
+
+.sales-points__search-status {
+    min-height: 18px;
+    color: rgba(239, 219, 178, 0.76);
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.sales-points__search-status--searching {
+    color: var(--secondary);
+}
+
+.sales-points__search-status--error {
+    color: rgba(239, 219, 178, 0.88);
 }
 
 .sales-map {
+    grid-column: 1;
+    grid-row: 1 / span 2;
     position: sticky;
     top: 96px;
     height: 640px;
@@ -147,9 +195,10 @@
 }
 
 .sales-points__list {
+    grid-column: 2;
     display: grid;
     gap: 12px;
-    max-height: 640px;
+    max-height: 548px;
     overflow-y: auto;
     padding-right: 8px;
     overscroll-behavior: contain;
@@ -288,45 +337,9 @@
         grid-template-columns: 1fr;
     }
 
-    .sales-points__mobile-search {
-        display: grid;
-        gap: 10px;
+    .sales-points__search {
+        grid-column: 1;
         margin-bottom: 6px;
-    }
-
-    .sales-points__mobile-search label {
-        color: var(--secondary);
-        font-size: 12px;
-        letter-spacing: 0.04em;
-        line-height: 1;
-        text-transform: uppercase;
-    }
-
-    .sales-points__mobile-search input {
-        width: 100%;
-        min-height: 46px;
-        border: 1px solid rgba(239, 219, 178, 0.44);
-        border-radius: 0;
-        padding: 0 14px;
-        color: var(--secondary);
-        background: rgba(0, 42, 58, 0.58);
-        font-family: var(--font-base);
-        font-size: 16px;
-        outline: none;
-    }
-
-    .sales-points__mobile-search input::placeholder {
-        color: rgba(239, 219, 178, 0.56);
-    }
-
-    .sales-points__mobile-search input:focus {
-        border-color: var(--secondary);
-    }
-
-    .sales-points__mobile-search p {
-        color: rgba(239, 219, 178, 0.76);
-        font-size: 14px;
-        line-height: 1.25;
     }
 
     .sales-map {
@@ -334,6 +347,7 @@
     }
 
     .sales-points__list {
+        grid-column: 1;
         max-height: none;
         overflow: visible;
         padding-right: 0;
@@ -341,6 +355,21 @@
 
     .sales-point {
         background: rgba(0, 42, 58, 0.34);
+    }
+
+    .sales-point--active {
+        border-color: rgba(239, 219, 178, 0.32);
+        color: var(--secondary);
+        background: rgba(0, 42, 58, 0.34);
+    }
+
+    .sales-point--active span {
+        color: var(--bianco);
+    }
+
+    .sales-point--active small,
+    .sales-point--active em {
+        color: rgba(239, 219, 178, 0.74);
     }
 
     .sales-point__select {
@@ -364,8 +393,7 @@
         text-transform: uppercase;
     }
 
-    .sales-point:hover .sales-point__maps,
-    .sales-point--active .sales-point__maps {
+    .sales-point:hover .sales-point__maps {
         color: var(--secondary);
         background: var(--primary);
     }
