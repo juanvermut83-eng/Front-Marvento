@@ -10,7 +10,7 @@ import { getProductos } from '../../Redux/Actions'
 import './styles.css'
 
 const ListaProductos = () => {
-  const { addToCart } = useContext(AppContext)
+  const { addToCart, configuracionTienda } = useContext(AppContext)
   const dispatch = useDispatch()
   const productos = useSelector((state) => state.app.productos)
   const [addedProductId, setAddedProductId] = useState('')
@@ -44,9 +44,13 @@ const ListaProductos = () => {
     }
 
     loadProductos()
-  }, [])
+  }, [dispatch])
 
   const handleAddToCart = (producto) => {
+    if (!configuracionTienda.carritoActivo) {
+      return
+    }
+
     if (producto.stock <= 0) {
       return
     }
@@ -77,6 +81,7 @@ const ListaProductos = () => {
             image={getProductImage(producto)}
             onAdd={handleAddToCart}
             isAdded={addedProductId === producto.id}
+            carritoActivo={configuracionTienda.carritoActivo}
           />
         ))}
       </div>

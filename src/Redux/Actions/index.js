@@ -4,6 +4,7 @@ import {
     CREATE_PRODUCTO,
     DELETE_PRODUCTO,
     GET_ALL_USUARIOS,
+    GET_CONFIGURACION_SITIO,
     GET_PRODUCTOS,
     GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
@@ -15,6 +16,7 @@ import {
     REGISTRARSE,
     RESET_LOGIN,
     RESET_USER,
+    UPDATE_CONFIGURACION_SITIO,
     UPDATE_PRODUCTO,
 } from "./actionType";
 
@@ -248,7 +250,7 @@ export const crearProducto = (producto) => {
             dispatch({ type: CREATE_PRODUCTO, payload: resp.data.producto });
             return resp.data.producto;
         } catch (error) {
-            throw new Error(getErrorMessage(error, "No se pudo crear el producto"));
+            throw new Error(getErrorMessage(error, "No se pudo crear el producto"), { cause: error });
         }
     };
 };
@@ -260,7 +262,7 @@ export const modificarProducto = (slug, producto) => {
             dispatch({ type: UPDATE_PRODUCTO, payload: resp.data.producto });
             return resp.data.producto;
         } catch (error) {
-            throw new Error(getErrorMessage(error, "No se pudo actualizar el producto"));
+            throw new Error(getErrorMessage(error, "No se pudo actualizar el producto"), { cause: error });
         }
     };
 };
@@ -272,7 +274,32 @@ export const eliminarProducto = (slug) => {
             dispatch({ type: DELETE_PRODUCTO, payload: slug });
             return resp.data;
         } catch (error) {
-            throw new Error(getErrorMessage(error, "No se pudo eliminar el producto"));
+            throw new Error(getErrorMessage(error, "No se pudo eliminar el producto"), { cause: error });
+        }
+    };
+};
+
+// =================================
+// CONFIGURACION SITIO
+// =================================
+export const getConfiguracionSitioAdmin = () => {
+    return async function (dispatch) {
+        const resp = await axios.get(`${URL}/configuracion-sitio/admin`, getAuthConfig());
+        const configuracion = resp.data.configuracion || {};
+        dispatch({ type: GET_CONFIGURACION_SITIO, payload: configuracion });
+        return configuracion;
+    };
+};
+
+export const actualizarConfiguracionSitio = (configuracion) => {
+    return async function (dispatch) {
+        try {
+            const resp = await axios.put(`${URL}/configuracion-sitio/admin`, configuracion, getAuthConfig());
+            const configuracionActualizada = resp.data.configuracion || {};
+            dispatch({ type: UPDATE_CONFIGURACION_SITIO, payload: configuracionActualizada });
+            return configuracionActualizada;
+        } catch (error) {
+            throw new Error(getErrorMessage(error, "No se pudo actualizar la configuracion"), { cause: error });
         }
     };
 };

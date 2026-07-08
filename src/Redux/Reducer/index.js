@@ -3,6 +3,7 @@ import {
     CREATE_PRODUCTO,
     DELETE_PRODUCTO,
     GET_ALL_USUARIOS,
+    GET_CONFIGURACION_SITIO,
     GET_PRODUCTOS,
     GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
@@ -14,6 +15,7 @@ import {
     REGISTRARSE,
     RESET_LOGIN,
     RESET_USER,
+    UPDATE_CONFIGURACION_SITIO,
     UPDATE_PRODUCTO,
 } from '../Actions/actionType'
 const initialState = {
@@ -27,6 +29,10 @@ const initialState = {
     usuarioModificado: null,
     productos: [],
     productosAdmin: [],
+    configuracionSitio: {
+        productosVisible: true,
+        carritoActivo: true,
+    },
 }
 
 export const SET_LOADING = 'SET_LOADING'
@@ -142,6 +148,15 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 productos: state.productos.filter((producto) => producto.id !== action.payload),
                 productosAdmin: state.productosAdmin.filter((producto) => producto.id !== action.payload),
+            }
+        case GET_CONFIGURACION_SITIO:
+        case UPDATE_CONFIGURACION_SITIO:
+            return {
+                ...state,
+                configuracionSitio: {
+                    ...state.configuracionSitio,
+                    ...action.payload,
+                },
             }
         case LOADING:
             return {

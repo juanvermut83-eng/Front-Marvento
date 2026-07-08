@@ -1,7 +1,8 @@
 .admin-orders {
   width: min(1180px, calc(100% - 32px));
-  min-height: 100%;
-  margin: 54px auto 90px;
+  min-height: calc(100vh - 130px);
+  margin: 0 auto;
+  padding: 54px 0 90px;
   color: var(--secondary);
   background: var(--primary);
   box-shadow: 0 0 0 100vmax var(--primary);
@@ -137,7 +138,7 @@
 
 @media (max-width: 720px) {
   .admin-orders {
-    margin-top: 36px;
+    padding-top: 36px;
   }
 
   .admin-orders__metrics {

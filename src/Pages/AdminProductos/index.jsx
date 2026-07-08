@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router'
 import {
@@ -68,20 +68,24 @@ const AdminProductos = () => {
         }
     }, [productos])
 
-    useEffect(() => {
-        loadProductos()
-    }, [])
-
-    const loadProductos = async () => {
+    const loadProductos = useCallback(async () => {
         try {
-            setError('')
             await dispatch(getProductosAdmin())
+            setError('')
         } catch (requestError) {
             setError(requestError.message || 'No se pudieron cargar los productos')
         } finally {
             setIsLoading(false)
         }
-    }
+    }, [dispatch])
+
+    useEffect(() => {
+        const timeoutId = window.setTimeout(() => {
+            loadProductos()
+        }, 0)
+
+        return () => window.clearTimeout(timeoutId)
+    }, [loadProductos])
 
     const showMessage = (successMessage) => {
         setMessage(successMessage)

@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { cartData, userData } from '../LocalStorage';
 import { AppContext } from './AppContext';
+import { URL } from '../Urls';
+
+const DEFAULT_TIENDA_CONFIG = {
+    productosVisible: true,
+    carritoActivo: true,
+};
 
 const AppProvider = ({ children }) => {
     const initialUser = userData();
@@ -14,6 +20,8 @@ const AppProvider = ({ children }) => {
     //estado para el SEARCH
     const [search, setSearch] = useState('');
     const [cartItems, setCartItems] = useState(initialCart);
+    const [configuracionTienda, setConfiguracionTienda] = useState(DEFAULT_TIENDA_CONFIG);
+    const [isConfigLoading, setIsConfigLoading] = useState(true);
 
     const guardarCarrito = (items) => {
         setCartItems(items);
@@ -76,6 +84,27 @@ const AppProvider = ({ children }) => {
         guardarCarrito([]);
     };
 
+    const refreshConfiguracionTienda = async () => {
+        try {
+            const response = await fetch(`${URL}/configuracion-sitio`);
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(data.message || 'No se pudo cargar la configuracion');
+            }
+
+            const nextConfig = {
+                ...DEFAULT_TIENDA_CONFIG,
+                ...(data.configuracion || {}),
+            };
+
+            setConfiguracionTienda(nextConfig);
+            return nextConfig;
+        } finally {
+            setIsConfigLoading(false);
+        }
+    };
+
     const login = (user) => {
         if (user) {
             setUserLog(user);
@@ -103,6 +132,12 @@ const AppProvider = ({ children }) => {
         return () => window.removeEventListener('userChanged', handleUserChanged);
     }, []);
 
+    useEffect(() => {
+        refreshConfiguracionTienda().catch(() => {
+            setConfiguracionTienda(DEFAULT_TIENDA_CONFIG);
+        });
+    }, []);
+
     return (
         <AppContext.Provider
             value={{
@@ -119,6 +154,10 @@ const AppProvider = ({ children }) => {
                 updateCartItemQuantity,
                 removeFromCart,
                 clearCart,
+                configuracionTienda,
+                setConfiguracionTienda,
+                refreshConfiguracionTienda,
+                isConfigLoading,
             }}>
             {children}
         </AppContext.Provider>

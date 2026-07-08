@@ -17,7 +17,7 @@ const isCajaX6 = (producto) => {
     return text.includes('caja') || text.includes('x6') || text.includes('x 6') || text.includes('pack')
 }
 
-function CardProducto({ producto, image, onAdd, isAdded }) {
+function CardProducto({ producto, image, onAdd, isAdded, carritoActivo = true }) {
     const variant = getVariantName(producto)
     const isBox = isCajaX6(producto)
     const label = variant === 'bianco' ? 'BIANCO' : 'ROSSO'
@@ -40,9 +40,11 @@ function CardProducto({ producto, image, onAdd, isAdded }) {
                     <p>{isBox ? 'PRECIO CAJA X6' : 'PRECIO UNIDAD'}: {price}.-</p>
                 </div>
 
-                <button type="button" onClick={() => onAdd(producto)} disabled={!hasStock}>
-                    {!hasStock ? 'SIN STOCK' : isAdded ? 'AGREGADO' : 'AGREGAR'}
-                </button>
+                {carritoActivo && (
+                    <button type="button" onClick={() => onAdd(producto)} disabled={!hasStock}>
+                        {!hasStock ? 'SIN STOCK' : isAdded ? 'AGREGADO' : 'AGREGAR'}
+                    </button>
+                )}
             </div>
         </article>
     )

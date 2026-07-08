@@ -18,6 +18,7 @@ const adminLinks = [
   { label: 'Informes', href: '/admin/informes' },
   { label: 'Pedidos', href: '/admin/pedidos' },
   { label: 'Consultas', href: '/admin/consultas' },
+  { label: 'Activar tienda', href: '/admin/activar-tienda' },
   { label: 'Puntos de venta', href: '/admin/puntos-venta' },
   { label: 'Productos', href: '/admin/productos' },
 ]
@@ -26,9 +27,9 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLogoutOpen, setIsLogoutOpen] = useState(false)
   const navigate = useNavigate()
-  const { userLog, cartItems, logout } = useContext(AppContext)
+  const { userLog, cartItems, logout, configuracionTienda } = useContext(AppContext)
   const puedeAdministrar = userLog?.roles?.some((rol) => ['ADMIN', 'EMPLEADO'].includes(rol))
-  const mostrarCarrito = !puedeAdministrar
+  const mostrarCarrito = !puedeAdministrar && configuracionTienda.carritoActivo
   const cantidadCarrito = cartItems?.reduce((total, item) => total + Number(item.cantidad || 0), 0) || 0
 
   const toggleMenu = () => {

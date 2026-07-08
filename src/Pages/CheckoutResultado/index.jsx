@@ -30,7 +30,7 @@ const formatPrice = (value) =>
     }).format(value || 0)
 
 const CheckoutResultado = ({ status }) => {
-    const { clearCart } = useContext(AppContext)
+    const { clearCart, configuracionTienda } = useContext(AppContext)
     const [searchParams] = useSearchParams()
     const [pedido, setPedido] = useState(null)
     const [error, setError] = useState('')
@@ -109,8 +109,8 @@ const CheckoutResultado = ({ status }) => {
                 {error && <div className="checkout-result__error">{error}</div>}
 
                 <div className="checkout-result__actions">
-                    {status === 'failure' && <Link to="/carrito">Volver al carrito</Link>}
-                    <Link to="/productos">Seguir comprando</Link>
+                    {status === 'failure' && configuracionTienda.carritoActivo && <Link to="/carrito">Volver al carrito</Link>}
+                    <Link to="/productos">Seguir viendo productos</Link>
                 </div>
             </div>
         </section>

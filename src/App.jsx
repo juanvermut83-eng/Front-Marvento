@@ -19,6 +19,7 @@ import AdminPuntosVenta from './Pages/AdminPuntosVenta'
 import AdminPedidos from './Pages/AdminPedidos'
 import AdminProductoNuevo from './Pages/AdminProductoNuevo'
 import AdminProductos from './Pages/AdminProductos'
+import AdminActivarTienda from './Pages/AdminActivarTienda'
 import './App.css'
 
 const RutaPrivada = ({ children, rolesPermitidos }) => {
@@ -35,6 +36,7 @@ const RutaPrivada = ({ children, rolesPermitidos }) => {
 }
 
 function App() {
+  const { configuracionTienda } = useContext(AppContext)
 
   return (
     <>
@@ -49,7 +51,10 @@ function App() {
           <Route path="/puntos-de-venta" element={<PuntosDeVenta />} />
           <Route path="/casa-talina" element={<CasaTalina />} />
           <Route path="/productos" element={<Vermuts />} />
-          <Route path="/carrito" element={<CarritoPage />} />
+          <Route
+            path="/carrito"
+            element={configuracionTienda.carritoActivo ? <CarritoPage /> : <Navigate to="/" replace />}
+          />
           <Route path="/checkout/success" element={<CheckoutResultado status="success" />} />
           <Route path="/checkout/failure" element={<CheckoutResultado status="failure" />} />
           <Route path="/checkout/pending" element={<CheckoutResultado status="pending" />} />
@@ -82,6 +87,14 @@ function App() {
             element={
               <RutaPrivada rolesPermitidos={['ADMIN', 'EMPLEADO']}>
                 <AdminPedidos />
+              </RutaPrivada>
+            }
+          />
+          <Route
+            path="/admin/activar-tienda"
+            element={
+              <RutaPrivada rolesPermitidos={['ADMIN', 'EMPLEADO']}>
+                <AdminActivarTienda />
               </RutaPrivada>
             }
           />

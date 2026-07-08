@@ -18,6 +18,7 @@ const CarritoPage = () => {
         removeFromCart,
         updateCartItemQuantity,
         userLog,
+        configuracionTienda,
     } = useContext(AppContext)
     const [checkoutError, setCheckoutError] = useState('')
     const [isCheckingOut, setIsCheckingOut] = useState(false)
@@ -42,6 +43,19 @@ const CarritoPage = () => {
     )
     const getStockDisponible = (_id, fallbackStock) => {
         return Number(fallbackStock ?? 0)
+    }
+
+    if (!configuracionTienda.carritoActivo) {
+        return (
+            <section className="cart-page cart-page--empty">
+                <div className="cart-empty">
+                    <span>Carrito</span>
+                    <h1>Carrito no disponible</h1>
+                    <p>La compra online esta desactivada por el momento.</p>
+                    <Link to="/">Volver al inicio</Link>
+                </div>
+            </section>
+        )
     }
 
     const handleCheckoutDataChange = (event) => {
