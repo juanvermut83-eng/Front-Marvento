@@ -22,12 +22,15 @@ function CardProducto({ producto, image, onAdd, isAdded, carritoActivo = true })
     const isBox = isCajaX6(producto)
     const label = variant === 'bianco' ? 'BIANCO' : 'ROSSO'
     const price = formatProductPrice(producto?.precioUnitario)
+    const unitPrice = isBox ? formatProductPrice(Number(producto?.precioUnitario || 0) / 6) : ''
+    const savingPercent = Number(producto?.ahorroPorcentaje ?? 10)
     const hasStock = Number(producto?.stock || 0) > 0
 
     return (
         <article className={`card-producto card-producto--${variant}${isBox ? ' card-producto--box' : ''}`}>
             <div className="card-producto__top">
                 <span>{label}</span>
+                {isBox && <strong>CAJA X6</strong>}
             </div>
 
             <div className="card-producto__image">
@@ -35,9 +38,20 @@ function CardProducto({ producto, image, onAdd, isAdded, carritoActivo = true })
             </div>
 
             <div className="card-producto__info">
-                <div>
+                <div className="card-producto__copy">
                     <h2>{producto?.nombre || `MARVENTO ${label}`}</h2>
-                    <p>{isBox ? 'PRECIO CAJA X6' : 'PRECIO UNIDAD'}: {price}.-</p>
+                    {isBox ? (
+                        <div className="card-producto__deal">
+                            <span>AHORRO {savingPercent}%</span>
+                            <p>CAJA X6</p>
+                            <strong>{price}.-</strong>
+                            <small>{unitPrice} por botella</small>
+                        </div>
+                    ) : (
+                        <p className="card-producto__unit-price">
+                            PRECIO UNIDAD: <strong>{price}.-</strong>
+                        </p>
+                    )}
                 </div>
 
                 {carritoActivo && (

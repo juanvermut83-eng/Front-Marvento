@@ -17,9 +17,16 @@ const emptyForm = {
     descripcion: '',
     notas: '',
     precioUnitario: '',
+    ahorroPorcentaje: '',
     stock: '',
     color: 'red',
     activo: true,
+}
+
+const isCajaX6 = (producto) => {
+    const text = `${producto?.nombre || ''} ${producto?.tipo || ''} ${producto?.descripcion || ''}`.toLowerCase()
+
+    return text.includes('caja') || text.includes('x6') || text.includes('x 6') || text.includes('pack')
 }
 
 const normalizeForm = (formData) => ({
@@ -32,6 +39,7 @@ const normalizeForm = (formData) => ({
         .map((nota) => nota.trim())
         .filter(Boolean),
     precioUnitario: Number(formData.precioUnitario) || 0,
+    ahorroPorcentaje: Math.min(100, Math.max(0, Number(formData.ahorroPorcentaje) || 0)),
     stock: Math.max(0, Number(formData.stock) || 0),
     color: formData.color || 'red',
     activo: Boolean(formData.activo),
@@ -41,6 +49,7 @@ const productToForm = (producto) => ({
     ...producto,
     notas: Array.isArray(producto.notas) ? producto.notas.join(', ') : '',
     precioUnitario: String(producto.precioUnitario ?? ''),
+    ahorroPorcentaje: String(producto.ahorroPorcentaje ?? (isCajaX6(producto) ? 10 : '')),
     stock: String(producto.stock ?? ''),
 })
 
@@ -260,6 +269,10 @@ const AdminProductos = () => {
                         <input type="number" min="0" step="1" name="precioUnitario" value={formData.precioUnitario} onChange={handleChange} />
                     </label>
                     <label>
+                        Ahorro pack (%)
+                        <input type="number" min="0" max="100" step="1" name="ahorroPorcentaje" value={formData.ahorroPorcentaje} onChange={handleChange} placeholder="10" />
+                    </label>
+                    <label>
                         Stock
                         <input type="number" min="0" step="1" name="stock" value={formData.stock} onChange={handleChange} />
                     </label>
@@ -302,6 +315,7 @@ const AdminProductos = () => {
                             <tr>
                                 <th>Producto</th>
                                 <th>Precio</th>
+                                <th>Ahorro</th>
                                 <th>Stock</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -315,6 +329,7 @@ const AdminProductos = () => {
                                         <span>{producto.tipo}</span>
                                     </td>
                                     <td>{formatProductPrice(producto.precioUnitario)}</td>
+                                    <td>{Number(producto.ahorroPorcentaje ?? 0) > 0 ? `${producto.ahorroPorcentaje}%` : '-'}</td>
                                     <td>
                                         <div className="admin-products__stock">
                                             <button type="button" onClick={() => updateStock(producto, -1)} disabled={producto.stock <= 0}>-</button>
