@@ -13,9 +13,10 @@ const ListaProductos = () => {
   const { addToCart, configuracionTienda } = useContext(AppContext)
   const dispatch = useDispatch()
   const productos = useSelector((state) => state.app.productos)
+  const productosLoading = useSelector((state) => state.app.productosLoading)
+  const productosLoaded = useSelector((state) => state.app.productosLoaded)
+  const productosError = useSelector((state) => state.app.productosError)
   const [addedProductId, setAddedProductId] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
 
   const isCajaX6 = (producto) => {
     const text = `${producto?.nombre || ''} ${producto?.tipo || ''} ${producto?.descripcion || ''}`.toLowerCase()
@@ -32,19 +33,10 @@ const ListaProductos = () => {
   }
 
   useEffect(() => {
-    const loadProductos = async () => {
-      try {
-        setError('')
-        await dispatch(getProductos())
-      } catch (requestError) {
-        setError(requestError.message || 'No se pudieron cargar los productos')
-      } finally {
-        setIsLoading(false)
-      }
+    if (!productosLoaded && !productosLoading) {
+      dispatch(getProductos()).catch(() => {})
     }
-
-    loadProductos()
-  }, [dispatch])
+  }, [dispatch, productosLoaded, productosLoading])
 
   const handleAddToCart = (producto) => {
     if (!configuracionTienda.carritoActivo) {
@@ -71,8 +63,8 @@ const ListaProductos = () => {
 
   return (
     <section className="product-list">
-      {isLoading && <div className="product-list__state">Cargando productos...</div>}
-      {error && <div className="product-list__state product-list__state--error">{error}</div>}
+      {productosLoading && <div className="product-list__state">Cargando productos...</div>}
+      {productosError && <div className="product-list__state product-list__state--error">{productosError}</div>}
       <div className="product-list__items">
         {productos.map((producto) => (
           <CardProducto

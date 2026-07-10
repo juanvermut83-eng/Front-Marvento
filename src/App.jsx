@@ -1,8 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
+import { useDispatch } from 'react-redux'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import { AppContext } from './Context/AppContext'
+import { getProductos } from './Redux/Actions'
 import Home from './Pages/Home'
 import Historia from './Pages/Historia'
 import Login from './Pages/Login'
@@ -37,6 +39,11 @@ const RutaPrivada = ({ children, rolesPermitidos }) => {
 
 function App() {
   const { configuracionTienda } = useContext(AppContext)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProductos()).catch(() => {})
+  }, [dispatch])
 
   return (
     <>

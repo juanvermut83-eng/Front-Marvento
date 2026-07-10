@@ -6,6 +6,8 @@ import {
     GET_ALL_USUARIOS,
     GET_CONFIGURACION_SITIO,
     GET_PRODUCTOS,
+    GET_PRODUCTOS_FAILURE,
+    GET_PRODUCTOS_REQUEST,
     GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
     GET_USER_BY_DNI,
@@ -51,6 +53,8 @@ const getErrorMessage = (error, fallbackMessage) =>
     error.response?.data?.error ||
     error.response?.data ||
     fallbackMessage;
+
+let productosRequest = null;
 
 
 // =================================
@@ -226,11 +230,35 @@ export const eliminaUsuario = (id) => {
 // PRODUCTOS
 // =================================
 export const getProductos = () => {
-    return async function (dispatch) {
-        const resp = await axios.get(`${URL}/productos`);
-        const productos = resp.data.productos || [];
-        dispatch({ type: GET_PRODUCTOS, payload: productos });
-        return productos;
+    return async function (dispatch, getState) {
+        const { productos, productosLoaded } = getState().app || {};
+
+        if (productosLoaded) {
+            return productos || [];
+        }
+
+        if (productosRequest) {
+            return productosRequest;
+        }
+
+        dispatch({ type: GET_PRODUCTOS_REQUEST });
+
+        productosRequest = axios.get(`${URL}/productos`)
+            .then((resp) => {
+                const productosResponse = resp.data.productos || [];
+                dispatch({ type: GET_PRODUCTOS, payload: productosResponse });
+                return productosResponse;
+            })
+            .catch((error) => {
+                const message = getErrorMessage(error, "No se pudieron cargar los productos");
+                dispatch({ type: GET_PRODUCTOS_FAILURE, payload: message });
+                throw new Error(message, { cause: error });
+            })
+            .finally(() => {
+                productosRequest = null;
+            });
+
+        return productosRequest;
     };
 };
 

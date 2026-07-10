@@ -5,6 +5,8 @@ import {
     GET_ALL_USUARIOS,
     GET_CONFIGURACION_SITIO,
     GET_PRODUCTOS,
+    GET_PRODUCTOS_FAILURE,
+    GET_PRODUCTOS_REQUEST,
     GET_PRODUCTOS_ADMIN,
     GET_USUARIOS_BY_ROL,
     GET_USER_BY_DNI,
@@ -28,6 +30,9 @@ const initialState = {
     usuarioByDni: null,
     usuarioModificado: null,
     productos: [],
+    productosLoading: false,
+    productosLoaded: false,
+    productosError: null,
     productosAdmin: [],
     configuracionSitio: {
         productosVisible: true,
@@ -118,10 +123,25 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 usuarioModificado: action.payload,
             }
+        case GET_PRODUCTOS_REQUEST:
+            return {
+                ...state,
+                productosLoading: true,
+                productosError: null,
+            }
         case GET_PRODUCTOS:
             return {
                 ...state,
                 productos: action.payload,
+                productosLoading: false,
+                productosLoaded: true,
+                productosError: null,
+            }
+        case GET_PRODUCTOS_FAILURE:
+            return {
+                ...state,
+                productosLoading: false,
+                productosError: action.payload,
             }
         case GET_PRODUCTOS_ADMIN:
             return {
