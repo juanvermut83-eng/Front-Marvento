@@ -20,18 +20,25 @@
 
 .card-producto__top span {
   min-width: 172px;
+  width: 172px;
   margin-left: 64px;
-  padding: 0 28px;
+  padding: 0;
   color: var(--secondary);
   background: var(--rosso);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-brand);
-  font-size: 30px;
-  font-weight: 700;
   line-height: 1;
-  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.card-producto__top span img {
+  width: auto;
+  height: 122px;
+  max-width: none;
+  flex: 0 0 auto;
+  transform: rotate(90deg);
+  transform-origin: center;
 }
 
 .card-producto__top strong {
@@ -209,8 +216,12 @@
 
   .card-producto__top span {
     min-width: 150px;
+    width: 150px;
     margin-left: 48px;
-    font-size: 26px;
+  }
+
+  .card-producto__top span img {
+    height: 112px;
   }
 
   .card-producto__top strong {

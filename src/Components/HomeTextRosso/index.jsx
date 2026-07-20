@@ -1,10 +1,13 @@
+import rossoLabel from '../../assets/label-rosso-clean.png'
 import './styles.css'
 
 const HomeTextRosso = () => {
     return (
         <div className="cont-text-rosso">
             <div className="guarda-rosso" aria-hidden="true" />
-            <div className="rosso-label">ROSSO</div>
+            <div className="rosso-label" aria-label="ROSSO">
+                <img src={rossoLabel} alt="" aria-hidden="true" />
+            </div>
             <div className="rosso-copy">
                 <span className="rosso-meta">Profundo &middot; Equilibrado &middot; Intenso</span>
                 <p className="texto-rosso">

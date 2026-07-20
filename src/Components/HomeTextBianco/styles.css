@@ -33,12 +33,18 @@
     align-items: center;
     height: 100px;
     min-width: 160px;
+    width: 176px;
     color: var(--secondary);
     background-color: var(--bianco);
-    font-family: var(--font-brand);
-    font-size: 40px;
-    font-weight: 700;
-    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.bianco-label img {
+    width: auto;
+    height: 138px;
+    max-width: none;
+    transform: rotate(90deg);
+    transform-origin: center;
 }
 
 .bianco-copy {
@@ -92,7 +98,11 @@
         left: clamp(34px, 11vw, 52px);
         height: 54px;
         min-width: 140px;
-        font-size: 27px;
+        width: 148px;
+    }
+
+    .bianco-label img {
+        height: 112px;
     }
 
     .bianco-copy {

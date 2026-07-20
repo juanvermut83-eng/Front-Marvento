@@ -1,4 +1,6 @@
 import { formatProductPrice } from '../../Helpers/productos'
+import biancoLabel from '../../assets/label-bianco-clean.png'
+import rossoLabel from '../../assets/label-rosso-clean.png'
 import './styles.css'
 
 const getVariantName = (producto) => {
@@ -21,6 +23,7 @@ function CardProducto({ producto, image, onAdd, isAdded, carritoActivo = true })
     const variant = getVariantName(producto)
     const isBox = isCajaX6(producto)
     const label = variant === 'bianco' ? 'BIANCO' : 'ROSSO'
+    const labelImage = variant === 'bianco' ? biancoLabel : rossoLabel
     const price = formatProductPrice(producto?.precioUnitario)
     const unitPrice = isBox ? formatProductPrice(Number(producto?.precioUnitario || 0) / 6) : ''
     const savingPercent = Number(producto?.ahorroPorcentaje ?? 10)
@@ -29,7 +32,9 @@ function CardProducto({ producto, image, onAdd, isAdded, carritoActivo = true })
     return (
         <article className={`card-producto card-producto--${variant}${isBox ? ' card-producto--box' : ''}`}>
             <div className="card-producto__top">
-                <span>{label}</span>
+                <span aria-label={label}>
+                    <img src={labelImage} alt="" aria-hidden="true" />
+                </span>
                 {isBox && <strong>CAJA X6</strong>}
             </div>
 

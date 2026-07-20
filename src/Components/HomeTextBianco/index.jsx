@@ -1,10 +1,13 @@
+import biancoLabel from '../../assets/label-bianco-clean.png'
 import './styles.css'
 
 const HomeTextBianco = () => {
     return (
         <div className="cont-text-bianco">
             <div className="guarda" aria-hidden="true" />
-            <div className="bianco-label">BIANCO</div>
+            <div className="bianco-label" aria-label="BIANCO">
+                <img src={biancoLabel} alt="" aria-hidden="true" />
+            </div>
             <div className="bianco-copy">
                 <span className="bianco-meta">Fresco &middot; Herbal &middot; Luminoso</span>
                 <p className="texto-bianco">
