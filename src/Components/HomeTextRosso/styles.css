@@ -206,7 +206,7 @@
     }
 
     .texto-rosso {
-        font-size: clamp(30px, 2.35vw, 38px);
+        font-size: clamp(30px, 2.35vw, 36px);
         line-height: 1.11;
     }
 

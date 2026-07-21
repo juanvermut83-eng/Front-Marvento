@@ -196,7 +196,7 @@
     }
 }
 
-@media (min-width: 1181px) {
+@media (min-width: 1250px) {
     .bianco-copy {
         width: min(82%, 390px);
         margin-top: 86px;
@@ -208,7 +208,7 @@
     }
 
     .texto-bianco {
-        font-size: clamp(30px, 2.35vw, 38px);
+        font-size: clamp(30px, 2.35vw, 32px);
         line-height: 1.11;
     }
 

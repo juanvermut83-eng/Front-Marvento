@@ -1,3 +1,43 @@
+@font-face {
+  font-family: 'Noto Sans Marvento';
+  src: url('./assets/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Marvento';
+  src: url('./assets/NotoSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Marvento';
+  src: url('./assets/NotoSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Marvento';
+  src: url('./assets/NotoSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Marvento';
+  src: url('./assets/NotoSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --primary: #002A3A;
   --secondary: #EFDBB2;
@@ -16,8 +56,8 @@
   --color-ink: var(--black);
   --color-wood: #5a2f1f;
   --shadow-soft: 0 20px 60px rgba(31, 23, 19, 0.16);
-  --font-base: 'Noto Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-brand: 'Arial Black', 'Noto Sans', Impact, sans-serif;
+  --font-base: 'Noto Sans Marvento', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-brand: 'Noto Sans Marvento', ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-brand);
 
   color: var(--color-text);
@@ -78,6 +118,7 @@ h2,
 h3 {
   color: var(--color-text);
   font-family: var(--font-display);
+  font-weight: 800;
   text-transform: uppercase;
 }
 
