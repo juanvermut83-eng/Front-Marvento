@@ -1,7 +1,7 @@
 .card-producto {
   width: min(100%, 486px);
-  border: 1px solid rgba(3, 43, 63, 0.18);
-  background: var(--white);
+  border: 0;
+  background: var(--secondary);
   color: var(--primary);
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--white);
+  background: var(--secondary);
 }
 
 .card-producto__image img {
@@ -85,7 +85,7 @@
   padding: 34px 26px 28px;
   background:
     linear-gradient(180deg, rgba(242, 225, 179, 0.28), rgba(255, 255, 255, 0) 42%),
-    var(--white);
+    var(--secondary);
 }
 
 .card-producto--box .card-producto__image img {
