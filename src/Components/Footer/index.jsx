@@ -1,3 +1,4 @@
+import casaTalinaLogo from '../../assets/logo_casa_talina.png'
 import marventoLogo from '../../assets/logo_alfa.png'
 import './style.css'
 
@@ -53,8 +54,7 @@ const Footer = () => {
     <footer className="footer" id="footer">
       <div className="footer__inner">
         <section className="footer__column footer__location" aria-label="Casa Talina">
-          <span className="footer__eyebrow">Casa Talina</span>
-          <h2>Casa Talina<span aria-hidden="true">&reg;</span></h2>
+          <img className="footer__location-logo" src={casaTalinaLogo} alt="Casa Talina" />
           <p>
             Bolivar 6171, Mar del Plata
             <br />

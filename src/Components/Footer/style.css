@@ -49,22 +49,11 @@
   text-transform: uppercase;
 }
 
-.footer__location h2 {
+.footer__location-logo {
+  display: block;
+  width: min(190px, 100%);
+  height: auto;
   margin: 0 0 24px;
-  color: var(--primary);
-  font-family: var(--font-brand);
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1;
-}
-
-.footer__location h2 span {
-  display: inline-block;
-  margin-left: 2px;
-  font-family: var(--font-base);
-  font-size: 9px;
-  vertical-align: top;
 }
 
 .footer__column p,
@@ -174,9 +163,9 @@
     letter-spacing: 0.14em;
   }
 
-  .footer__location h2 {
+  .footer__location-logo {
+    width: min(170px, 100%);
     margin-bottom: 16px;
-    font-size: 25px;
   }
 
   .footer__column p,

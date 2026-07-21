@@ -1,6 +1,6 @@
 import { formatProductPrice } from '../../Helpers/productos'
-import biancoLabel from '../../assets/label-bianco-clean.png'
-import rossoLabel from '../../assets/label-rosso-clean.png'
+import biancoLabel from '../../assets/texto_bianco.png'
+import rossoLabel from '../../assets/texto_roso.png'
 import './styles.css'
 
 const getVariantName = (producto) => {

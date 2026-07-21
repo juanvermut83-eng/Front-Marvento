@@ -9,17 +9,30 @@
     overflow: hidden;
 }
 
+.home-product-picture,
 .imgRosso {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: contain;
+}
+
+.imgRosso {
+    object-fit: cover;
     object-position: center;
 }
 
 @media (max-width: 760px) {
     .cont-rosso-img {
         width: 100%;
-        height: 520px;
+        height: auto;
+    }
+
+    .home-product-picture,
+    .imgRosso {
+        height: auto;
+    }
+
+    .imgRosso {
+        object-fit: contain;
     }
 }

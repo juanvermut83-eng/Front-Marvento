@@ -34,11 +34,9 @@
 
 .card-producto__top span img {
   width: auto;
-  height: 122px;
+  height: 27px;
   max-width: none;
   flex: 0 0 auto;
-  transform: rotate(90deg);
-  transform-origin: center;
 }
 
 .card-producto__top strong {
@@ -58,6 +56,12 @@
 
 .card-producto--bianco .card-producto__top span {
   background: var(--bianco);
+}
+
+.card-producto--bianco .card-producto__top span img {
+  position: relative;
+  top: -3px;
+  height: 27px;
 }
 
 .card-producto__image {
@@ -221,7 +225,11 @@
   }
 
   .card-producto__top span img {
-    height: 112px;
+    height: 25px;
+  }
+
+  .card-producto--bianco .card-producto__top span img {
+    height: 25px;
   }
 
   .card-producto__top strong {

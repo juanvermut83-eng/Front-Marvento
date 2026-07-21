@@ -1,4 +1,4 @@
-import rossoLabel from '../../assets/label-rosso-clean.png'
+import rossoLabel from '../../assets/texto_roso.png'
 import './styles.css'
 
 const HomeTextRosso = () => {

@@ -1,4 +1,4 @@
-import biancoLabel from '../../assets/label-bianco-clean.png'
+import biancoLabel from '../../assets/texto_bianco.png'
 import './styles.css'
 
 const HomeTextBianco = () => {

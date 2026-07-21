@@ -42,10 +42,8 @@
 
 .rosso-label img {
     width: auto;
-    height: 138px;
+    height: 36px;
     max-width: none;
-    transform: rotate(90deg);
-    transform-origin: center;
 }
 
 .rosso-copy {
@@ -103,7 +101,7 @@
     }
 
     .rosso-label img {
-        height: 112px;
+        height: 28px;
     }
 
     .rosso-copy {
@@ -124,6 +122,96 @@
 
     .texto-rosso + .texto-rosso {
         margin-top: 18px;
+    }
+}
+
+@media (min-width: 921px) and (max-width: 1180px) and (max-height: 900px) {
+    .cont-text-rosso {
+        padding-top: 62px;
+        padding-bottom: 34px;
+    }
+
+    .rosso-copy {
+        width: min(82%, 360px);
+        margin-top: 58px;
+    }
+
+    .rosso-meta {
+        margin-bottom: 16px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+
+    .texto-rosso {
+        font-size: clamp(21px, 1.65vw, 30px);
+        line-height: 1.1;
+    }
+
+    .texto-rosso + .texto-rosso {
+        margin-top: 18px;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 920px) and (max-height: 650px) {
+    .cont-text-rosso {
+        padding-top: 50px;
+        padding-bottom: 24px;
+    }
+
+    .guarda-rosso {
+        height: 70px;
+        background-size: auto 52px;
+    }
+
+    .rosso-label {
+        top: -6px;
+        height: 70px;
+        width: 160px;
+    }
+
+    .rosso-label img {
+        height: 30px;
+    }
+
+    .rosso-copy {
+        width: min(88%, 390px);
+        margin-top: 44px;
+        margin-left: 54px;
+    }
+
+    .rosso-meta {
+        margin-bottom: 12px;
+        font-size: 9px;
+    }
+
+    .texto-rosso {
+        font-size: clamp(16px, 2.05vw, 18px);
+        line-height: 1.08;
+    }
+
+    .texto-rosso + .texto-rosso {
+        margin-top: 12px;
+    }
+}
+
+@media (min-width: 1181px) {
+    .rosso-copy {
+        width: min(82%, 390px);
+        margin-top: 86px;
+    }
+
+    .rosso-meta {
+        margin-bottom: 22px;
+        font-size: 12px;
+    }
+
+    .texto-rosso {
+        font-size: clamp(30px, 2.35vw, 38px);
+        line-height: 1.11;
+    }
+
+    .texto-rosso + .texto-rosso {
+        margin-top: 24px;
     }
 }
 
